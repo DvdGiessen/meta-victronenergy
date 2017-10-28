@@ -51,3 +51,10 @@ RDEPENDS_${PN}_append_raspberrypi2 += "\
 	swupdate \
 	swupdate-scripts \
 "
+
+RDEPENDS_${PN}_append_nanopi += "\
+	gpio-export \
+	swupdate \
+	swupdate-scripts \
+	wlan-firmware-nanopi \
+"

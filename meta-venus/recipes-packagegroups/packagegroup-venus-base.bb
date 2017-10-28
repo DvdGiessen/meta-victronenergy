@@ -84,3 +84,7 @@ RDEPENDS_${PN} += "\
 	websockify-c \
 	zip \
 "
+
+RDEPENDS_${PN}_append_nanopi += "\
+	cpufrequtils \
+"
