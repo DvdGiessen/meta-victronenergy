@@ -6,7 +6,6 @@ DEPENDS += "\
 	devmem2 \
 	gdb \
 	git \
-	nodejs \
 	packagegroup-core-buildessential \
 	s6 \
 	tcpdump \

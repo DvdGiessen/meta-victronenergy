@@ -57,6 +57,7 @@ RDEPENDS_${PN} += "\
 	localedef \
 	nano \
 	ncurses-tools \
+	nodejs \
 	openssh \
 	openssh-sftp-server \
 	opkg \
