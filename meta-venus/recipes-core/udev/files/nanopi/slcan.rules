@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{product}=="VE SLCAN Interface", SYMLINK+="ttyUSB_can0"
+ACTION=="remove", SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{product}=="VE SLCAN Interface", RUN+="killall slcand"

@@ -13,6 +13,10 @@ SRC_URI_append_beaglebone += "\
 	file://wlan-update \
 "
 
+SRC_URI_append_nanopi += "\
+        file://slcan.rules \
+"
+
 do_install_append() {
 	install -m 0755 ${WORKDIR}/mount.sh ${D}${sysconfdir}/udev/scripts
 
@@ -29,6 +33,10 @@ do_install_append_beaglebone() {
 	install -m 0755 -d ${D}${base_libdir}/udev
 	install -m 0755 ${WORKDIR}/wlan-rename ${D}${base_libdir}/udev
 	install -m 0755 ${WORKDIR}/wlan-update ${D}${base_libdir}/udev
+}
+
+do_install_append_nanopi() {
+	install -m 0644 ${WORKDIR}/slcan.rules ${D}${sysconfdir}/udev/rules.d
 }
 
 do_install_append_ccgx() {
