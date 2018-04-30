@@ -14,7 +14,6 @@ DEPENDS = " \
 "
 
 RDEPENDS_${PN} += " \
-	bcrypt \
 	nodejs \
 	nodejs-npm \
 	serialport \
