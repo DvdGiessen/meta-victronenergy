@@ -9,6 +9,12 @@
 
 LICENSE = "MIT"
 
+inherit daemontools
+
+SRC_URI = " \
+	file://start-signalk.sh \
+"
+
 DEPENDS = " \
 	nodejs-native \
 "
@@ -20,6 +26,8 @@ RDEPENDS_${PN} += " \
 	socketcan \
 "
 
+DAEMONTOOLS_SERVICE_DIR = "${sysconfdir}/${PN}/service"
+DAEMONTOOLS_RUN = "${libdir}/node_modules/signalk-server/bin/start-signalk.sh"
 
 do_compile() {
 	# Fetch & install signalk-server
@@ -46,6 +54,8 @@ do_install() {
 	# find ${WORKDIR}/${BP}/tmp/lib/node_modules/signalk-server/ -type f -exec 'install -m 0755 "{}" ${D}${libdir}/node_modules/signalk-server' \;
 	# above gives a an error. (find: `....`: no such file or directory). do the cp equivalent instead
 	cp -R --no-dereference --preserve=mode,links -v ${WORKDIR}/${BP}/tmp/lib/node_modules/signalk-server ${D}${libdir}/node_modules/
+
+	install -m 0755 ${WORKDIR}/start-signalk.sh ${D}${libdir}/node_modules/signalk-server/bin
 }
 
 FILES_${PN} += "${libdir}/node_modules/signalk-server"
