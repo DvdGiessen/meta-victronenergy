@@ -8,8 +8,11 @@ COMPATIBLE_MACHINE = "nanopi"
 
 RDEPENDS_kernel-base += "kernel-devicetree"
 
-KERNEL_CONFIG_COMMAND = "oe_runmake -C ${S} O=${B} nanopi_easysolar_defconfig"
-KERNEL_DEVICETREE = "sun8i-h3-nanopi-easysolar.dtb"
+KERNEL_CONFIG_COMMAND = "oe_runmake -C ${S} O=${B} nanopi_victron_defconfig"
+KERNEL_DEVICETREE = "\
+	sun8i-h3-nanopi-easysolar.dtb \
+	sun8i-h3-nanopi-paygo.dtb \
+"
 
 SRC_URI = "https://github.com/victronenergy/linux/archive/v${PV}.tar.gz"
 SRC_URI[md5sum] = "2ae670e241edf5b298dc7c36cdb26e40"
