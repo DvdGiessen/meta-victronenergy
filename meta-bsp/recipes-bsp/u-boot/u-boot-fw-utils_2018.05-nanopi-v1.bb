@@ -10,9 +10,8 @@ PROVIDES = ""
 SRC_URI = " \
 	git://github.com/victronenergy/u-boot.git;protocol=https;branch=nanopi \
 	file://fw_env.config \
-	file://u-boot.env \
 "
-SRCREV = "7de8ad4372d15404069f5cf77f4a5418ab7f9c07"
+SRCREV = "3bf933071eeb07edfceec90652eb12a94ecfd9ed"
 
 S = "${WORKDIR}/git"
 
@@ -31,9 +30,6 @@ do_install () {
 
 	install -d ${D}${sysconfdir}
 	install -m 644 ${WORKDIR}/fw_env.config ${D}${sysconfdir}
-
-	install -d ${D}${datadir}/u-boot
-	install -m 644 ${WORKDIR}/u-boot.env ${D}${datadir}/u-boot
 }
 
 do_deploy[noexec] = "1"

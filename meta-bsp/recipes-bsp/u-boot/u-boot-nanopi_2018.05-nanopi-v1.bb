@@ -5,13 +5,13 @@ LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
 
 COMPATIBLE_MACHINE = "nanopi"
 
-DEPENDS += "bc-native dtc-native swig-native u-boot-mkimage-native"
+DEPENDS += "bc-native coreutils-native dtc-native swig-native u-boot-mkimage-native"
 
 SRC_URI = " \
 	git://github.com/victronenergy/u-boot.git;protocol=https;branch=nanopi \
 	file://install.cmds \
 "
-SRCREV = "7de8ad4372d15404069f5cf77f4a5418ab7f9c07"
+SRCREV = "3bf933071eeb07edfceec90652eb12a94ecfd9ed"
 
 S = "${WORKDIR}/git"
 
