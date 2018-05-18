@@ -14,6 +14,7 @@ inherit daemontools
 SRC_URI = " \
 	file://start-signalk.sh \
 	file://venus.json \
+	file://settings.json \
 "
 
 DEPENDS = " \
@@ -67,10 +68,12 @@ do_install() {
 	# above gives a an error. (find: `....`: no such file or directory). do the cp equivalent instead
 	cp -R --no-dereference --preserve=mode,links -v ${WORKDIR}/${BP}/tmp/lib/node_modules/signalk-server ${D}${libdir}/node_modules/
 
-	install -m 0755 ${WORKDIR}/start-signalk.sh ${D}${libdir}/node_modules/signalk-server/bin
+	INSTALLDIR=${D}${libdir}/node_modules/signalk-server
+	install -m 0755 ${WORKDIR}/start-signalk.sh ${INSTALLDIR}/bin
 
-	install -d ${D}${libdir}/node_modules/signalk-server/defaults
-	install -m 0755 ${WORKDIR}/venus.json ${D}${libdir}/node_modules/signalk-server/defaults
+	install -d ${INSTALLDIR}/defaults
+	install -m 0755 ${WORKDIR}/settings.json ${INSTALLDIR}/defaults
+	install -m 0755 ${WORKDIR}/venus.json ${INSTALLDIR}/defaults
 }
 
 FILES_${PN} += "${libdir}/node_modules/signalk-server"

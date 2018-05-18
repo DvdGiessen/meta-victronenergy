@@ -2,13 +2,16 @@
 exec 2>&1
 echo "*** Starting signalk ***"
 
-PLUGINCONF=/data/conf/signalk/plugin-config-data
-DEFAULTCONF=/usr/lib/node_modules/signalk-server/defaults
+CONF="/data/conf/signalk"
+PLUGINCONF="${CONF}/plugin-config-data"
+DEFAULTCONF="/usr/lib/node_modules/signalk-server/defaults"
 
-# make all config dir
 mkdir -p /data/conf/signalk/plugin-config-data
 
-# install plugin default config(s)
+if [ ! -f "$CONF/settings.json" ]; then
+	cp "$DEFAULTCONF/settings.json" "$CONF"
+fi
+
 if [ ! -f "$PLUGINCONF/venus.json" ]; then
         cp "$DEFAULTCONF/venus.json" "$PLUGINCONF"
 fi
