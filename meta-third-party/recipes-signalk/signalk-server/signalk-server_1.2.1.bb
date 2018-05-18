@@ -13,6 +13,7 @@ inherit daemontools
 
 SRC_URI = " \
 	file://start-signalk.sh \
+	file://venus.json \
 "
 
 DEPENDS = " \
@@ -39,6 +40,17 @@ do_compile() {
 	# compiling? (they are deleted afterwards anyway).
 	npm install -g --prefix ./tmp signalk-server@${PV}
 
+        cd ./tmp/lib/node_modules/signalk-server
+
+	# install plugins
+	# TODO: this could perhaps be done better, as now we specify a version here,
+	#       inside the recipe. Which is not common practice in OE.
+	npm install signalk-venus-plugin@1.6.0
+	# remove the files in put/test: they are not necessary & compiled.
+	rm -rf ./node_modules/put/test
+
+	cd ../../../../
+
 	# Next, remove the packages that contain compiled code
 	# note that this means they must be installed in another way, ie by using
 	# normal npm-fetcher from OE.
@@ -56,6 +68,9 @@ do_install() {
 	cp -R --no-dereference --preserve=mode,links -v ${WORKDIR}/${BP}/tmp/lib/node_modules/signalk-server ${D}${libdir}/node_modules/
 
 	install -m 0755 ${WORKDIR}/start-signalk.sh ${D}${libdir}/node_modules/signalk-server/bin
+
+	install -d ${D}${libdir}/node_modules/signalk-server/defaults
+	install -m 0755 ${WORKDIR}/venus.json ${D}${libdir}/node_modules/signalk-server/defaults
 }
 
 FILES_${PN} += "${libdir}/node_modules/signalk-server"
