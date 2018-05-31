@@ -13,10 +13,10 @@ RDEPENDS_${PN} = "\
 "
 
 SRC_URI = " \
-	gitsm://github.com/victronenergy/dbus-modem.git;protocol=https \
+	gitsm://github.com/victronenergy/dbus-modem.git;protocol=https;tag=v${PV} \
 	file://start-modem.sh \
 "
-SRCREV = "348bbf7e7a4e862b81280621a846a6845da7649e"
+SRCREV = "79e7391b7cb8682d654cf0efa48952487f587259"
 S = "${WORKDIR}/git"
 
 DAEMONTOOLS_RUN = "${bindir}/start-modem.sh TTY"
