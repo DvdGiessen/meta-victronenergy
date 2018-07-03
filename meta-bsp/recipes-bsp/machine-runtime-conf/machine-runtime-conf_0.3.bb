@@ -11,7 +11,9 @@ SRC_URI += " \
 	file://product-name \
 	file://machine-conf.sh \
 "
+SRC_URI_append_beaglebone += "file://canbus_ports.in"
 SRC_URI_append_ccgx += "file://get-unique-id.c"
+SRC_URI_append_nanopi += "file://canbus_ports.in"
 
 inherit update-rc.d
 
